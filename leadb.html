@@ -1,0 +1,39 @@
+<head>
+  <title>leadb</title>
+</head>
+
+<body>
+	<div class="container">
+
+		 <h1>Welcome to Players Pro!</h1>
+	{{> index}}
+  	{{> leaderBoard}}
+	</div><!-- /.container -->
+</body>
+
+<template name="index">
+	<div class="well">
+		<span class="col-md-4">Lowest : {{lowPlayer.name}} - {{lowPlayer.score}}</span>
+		<span class="col-md-4"> Highest : {{topPlayer.name}} - {{topPlayer.score}}</span>
+		<span class="col-md-4"> Currect Players : {{playersCount}}</span>
+	</div><!-- /.well -->
+</template>
+<template name="leaderBoard">
+	{{#each players}}
+		<div class="panel panel-primary">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">{{name}}</h3>
+		    </div>
+		    <div class="panel-body">
+				<p>{{score}}</p>
+				<p>{{age}}</p>
+		    </div>
+		</div>
+	{{/each}}
+</template>
+
+
+
+
+
+
