@@ -1,39 +1,65 @@
 <head>
-  <title>leadb</title>
+<title>leadb</title>
 </head>
 
 <body>
-	<div class="container">
+<div class="container">
 
-		 <h1>Welcome to Players Pro!</h1>
+	<h1>Welcome to Players Pro!</h1>
+	<div class="well well-sm">
+		<i class="mdi-action-account-circle"></i>
+		{{> loginButtons}}
+	</div>
 	{{> index}}
+	{{> addPlayerForm}}
   	{{> leaderBoard}}
-	</div><!-- /.container -->
+</div>
+<!-- /.container -->
 </body>
 
 <template name="index">
 	<div class="well">
-		<span class="col-md-4">Lowest : {{lowPlayer.name}} - {{lowPlayer.score}}</span>
-		<span class="col-md-4"> Highest : {{topPlayer.name}} - {{topPlayer.score}}</span>
-		<span class="col-md-4"> Currect Players : {{playersCount}}</span>
-	</div><!-- /.well -->
+		<span class="col-md-4">Lowest : {{#each lowPlayer}}{{name}} - {{score}}{{/each}}</span>
+		<span class="col-md-4">
+			Highest : {{#each topPlayer}}{{name}} - {{score}}
+		{{/each}}
+		</span>
+		<span class="col-md-4">Currect Players : {{playersCount}}</span>
+	</div>
+	<!-- /.well -->
 </template>
 <template name="leaderBoard">
 	{{#each players}}
-		<div class="panel panel-primary">
-		    <div class="panel-heading">
-		        <h3 class="panel-title">{{name}}</h3>
-		    </div>
-		    <div class="panel-body">
-				<p>{{score}}</p>
-				<p>{{age}}</p>
-		    </div>
+	<div class="panel panel-primary playerWell {{selectedClass}}">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{name}}</h3>
 		</div>
+		<div class="panel-body">
+			<p> <b>Score :</b>
+				{{score}}
+			</p>
+			<p> <b>Age :</b>
+				{{age}}
+			</p>
+		</div>
+	</div>
 	{{/each}}
+	<button class="remove btn btn-danger btn-xs"><i class="mdi-content-clear"></i></button>
+	<button class="points btn btn-primary btn-xs">+5</button>
+	<button class="pointsMinus btn btn-danger btn-xs">-5</button>
 </template>
+<template name="addPlayerForm">
+{{#if currentUser}}
+	<form class="card well">
+	<fieldset>
+		<legend>New Player</legend>
+		<div class="form-group">
 
-
-
-
-
-
+			<input class="form-control floating-label" name="name" id="focusedInput" type="text" placeholder="Name" data-hint="Enter player name">
+			<input class="form-control floating-label" id="focusedInput" type="text" placeholder="Age" name="age" data-hint="Enter player age">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</fieldset>
+	</form>
+{{/if}}
+</template>

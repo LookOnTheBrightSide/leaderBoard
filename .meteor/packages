@@ -8,3 +8,5 @@ meteor-platform
 autopublish
 insecure
 fezvrasta:bootstrap-material-design
+accounts-password
+accounts-ui
