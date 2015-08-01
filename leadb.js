@@ -123,11 +123,20 @@ if (Meteor.isServer) {
     Meteor.methods({
         'insertPlayerData': function(playerName, age) {
             var currentUserId = Meteor.userId();
+              if (playerName === "") {
+                  var playerName = "Pro Player"
+                } 
+              if (age === "") {
+                  var age = 10
+                } 
             PlayersList.insert({
-                name: playerName,
-                age: age,
-                createdBy: currentUserId,
-                score: 0
+              
+                    name: playerName,
+                    age: age,
+                    createdBy: currentUserId,
+                    score: 0
+                
+
             })
             //console.log('hello Meteor world ');
         }
@@ -150,9 +159,15 @@ if (Meteor.isServer) {
 
     Meteor.methods({
         'points': function(selectedPlayer, scoreValue) {
-var currentUserId = Meteor.userId();
-    PlayersList.update( {_id: selectedPlayer, createdBy: currentUserId},
-                        {$inc: {score: scoreValue} });
+            var currentUserId = Meteor.userId();
+            PlayersList.update({
+                _id: selectedPlayer,
+                createdBy: currentUserId
+            }, {
+                $inc: {
+                    score: scoreValue
+                }
+            });
         }
     });
 

@@ -30,7 +30,7 @@
 </template>
 <template name="leaderBoard">
 	{{#each players}}
-	<div class="panel panel-primary playerWell {{selectedClass}}">
+	<div class="panel panel-primary playerWell col-md-4 {{selectedClass}}">
 		<div class="panel-heading">
 			<h3 class="panel-title">{{name}}</h3>
 		</div>
@@ -50,7 +50,7 @@
 </template>
 <template name="addPlayerForm">
 {{#if currentUser}}
-	<form class="card well">
+	<form class="card well col-md-4">
 	<fieldset>
 		<legend>New Player</legend>
 		<div class="form-group">
